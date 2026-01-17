@@ -11,6 +11,8 @@ from geometry_msgs.msg import PoseStamped, Pose
 import rclpy
 from rclpy.node import Node
 
+import csv
+
 
 T = 15
 N = 100
