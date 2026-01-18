@@ -45,6 +45,8 @@ class Pose_Node(Node):
         self.y = msg.pose.position.y
         self.z = msg.pose.position.z
 
+        print(f"Drone cf_{self.i} initial pose: {self.x} {self.y} {self.z} ")
+ 
         dx = self.gx - self.x
         dy = self.gy- self.y
         dz = self.gz - self.z
