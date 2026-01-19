@@ -64,7 +64,7 @@ class Pose_Node(Node):
             point =f"{st},{sx},{sy},{sz},{syaw}"
             points.append(point)
         
-        with open(f"timed_traj_cf{self.i}.csv", "w") as f:
+        with open(f"./new_trajectories/timed_traj_cf{self.i}.csv", "w") as f:
             f.write("t,x,y,z,yaw\n")
             for ps in points:
                 f.write(f"{ps}\n")
