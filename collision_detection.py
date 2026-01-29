@@ -9,7 +9,7 @@ def check_collisions(df1, df2, min_dist=0.2):
     t_start = min(df1["t"].min(), df2["t"].min())
     t_end = max(df1["t"].max(), df2["t"].max())
     
-    common_times = np.arange(t_start, t_end + 0.1, 0.1)
+    common_times = np.arange(t_start, t_end + 0.15, 0.15)
    
     p1x = np.interp(common_times, df1["t"], df1["x"])
     p1y = np.interp(common_times, df1["t"], df1["y"])
@@ -63,9 +63,9 @@ def solve_and_verify(min_dist=0.3, lift_amount=0.5):
                 
                 print(f"Collision detected between {os.path.basename(path1)} and {os.path.basename(path2)}.")
                 print(f"  -> Duration: from {t_start_col:.2f}s to {t_end_col:.2f}s. Fixing...")
-                
+
                 for t_col, _ in detected_collisions:
-                    mask = (df1['t'] >= t_col - 0.05) & (df1['t'] <= t_col + 0.05)
+                    mask = (df1['t'] >= t_col - 0.05) & (df1['t'] <= t_col + 0.05) # probat maknut ove 0.05
                     df1.loc[mask, 'z'] += lift_amount
 
     output_dir = "safe_trajectories"
