@@ -11,9 +11,14 @@ from geometry_msgs.msg import PoseStamped, Pose
 import rclpy
 from rclpy.node import Node
 
+import collision_detection
+import traj_graphs
+import move_drone
+#import generate_trajectory
 import csv
 
-
+import os
+import subprocess
 T = 15
 N = 100
 
@@ -70,7 +75,7 @@ class Pose_Node(Node):
                 f.write(f"{ps}\n")
         
         self.destroy_subscription(self.subscription_cf)
-        time.sleep(7)
+        time.sleep(2)
         rclpy.shutdown()
         print("\nAll trajectories generated!\n")
 
@@ -107,6 +112,16 @@ if __name__ == "__main__":
         executor.add_node(node)
     executor.spin()
 
+    collision_detection.solve_and_verify()
+
+    for i in range(len(allcfs.crazyfliesById)):
+        print(f"Generating tajectory for cf_{i+1}")
+        subprocess.run(['python', "../../generate_trajectory.py",
+                        f"./safe_trajectories/safe_timed_traj_cf{i+1}.csv",
+                        f"./safe_trajectories/poli_traj_cf{i+1}.csv",
+                        "--pieces", "5"])
+        
+    move_drone.move_drones()
 
 
     

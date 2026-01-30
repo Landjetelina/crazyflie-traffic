@@ -20,7 +20,7 @@ if __name__ == "__main__":
         xi = []
         yi = []
         zi = []
-        with open(f"timed_traj_cf{n}.csv", "r") as f:
+        with open(f"./safe_trajectories/safe_timed_traj_cf{n}.csv", "r") as f:
 
             csvFile = csv.reader(f)
             
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     plt.xlabel("t / s")
     plt.ylabel("x / m")
     plt.legend(loc="best")
-    plt.savefig("xs_in_time.png")
+    plt.savefig("safe_xs_in_time.png")
 
     plt.figure()
     plt.title("Y koordinate")
@@ -60,7 +60,7 @@ if __name__ == "__main__":
     plt.xlabel("t / s")
     plt.ylabel("y / m")
     plt.legend(loc="best")
-    plt.savefig("ys_in_time.png")
+    plt.savefig("safe_ys_in_time.png")
 
     plt.figure()
     plt.title("Z koordinate")
@@ -70,7 +70,7 @@ if __name__ == "__main__":
     plt.xlabel("t / s")
     plt.ylabel("z / m")
     plt.legend(loc="best")
-    plt.savefig("zs_in_time.png")
+    plt.savefig("safe_zs_in_time.png")
     
         
 
